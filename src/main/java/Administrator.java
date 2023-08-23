@@ -1,24 +1,36 @@
-public class Administrator extends  User{
-    public double dietCostPerDay;
-    public double distanceCost;
-    public Administrator(String username,double dietCostPerDay, double distanceCost){
-        super(username,"admin");
-        this.dietCostPerDay = dietCostPerDay;
-        this.distanceCost = distanceCost;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
-        setDietCostPerDay(15);
-        setDistanceCost(0.3);
+public class Administrator {
+    private DoubleProperty dietCostPerDay;
+    private DoubleProperty distanceCost;
+
+    public Administrator(String username, double dietCostPerDay, double distanceCost) {
+        this.dietCostPerDay = new SimpleDoubleProperty(dietCostPerDay);
+        this.distanceCost = new SimpleDoubleProperty(distanceCost);
     }
-    public double getDietCostPerDay(){
+
+    public DoubleProperty dietCostPerDayProperty() {
         return dietCostPerDay;
     }
-    public double getDistanceCost(){
+
+    public double getDietCostPerDay() {
+        return dietCostPerDay.get();
+    }
+
+    public void setDietCostPerDay(double dietCostPerDay) {
+        this.dietCostPerDay.set(dietCostPerDay);
+    }
+
+    public DoubleProperty distanceCostProperty() {
         return distanceCost;
     }
-    public void setDietCostPerDay(double dietCostPerDay){
-        this.distanceCost = dietCostPerDay;
+
+    public double getDistanceCost() {
+        return distanceCost.get();
     }
-    public void setDistanceCost(double distanceCost){
-        this.distanceCost = distanceCost;
+
+    public void setDistanceCost(double distanceCost) {
+        this.distanceCost.set(distanceCost);
     }
 }

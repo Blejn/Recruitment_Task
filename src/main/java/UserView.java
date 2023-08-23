@@ -1,4 +1,5 @@
 
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
@@ -23,12 +24,12 @@ public class UserView {
     private Administrator administrator;
 
 
-    public UserView(main main) {
+    public UserView(main main, Administrator administrator) {
         receiptsList = new ArrayList<>();
         receiptBox = new VBox(10);
         daysDietBox = new VBox();
         receiptsContainer = new HBox();
-        administrator = new Administrator("admin",15,0.3);
+        this.administrator = administrator;
 
         addReceipt();
         Label titleLabel = new Label("Create Reimbursement Claim");
@@ -120,7 +121,7 @@ public class UserView {
         });
 
         Button backButton = new Button("Back to Main");
-        backButton.setOnAction(event -> main.backToMainScene());
+        backButton.setOnAction(event -> main.backToMainScene(administrator));
 
         GridPane formLayout = new GridPane();
         formLayout.setHgap(11);
@@ -176,8 +177,11 @@ public class UserView {
             totalAmount += receipt.getAmount();
         }
 
-        double distanceCost = administrator.getDistanceCost();
-        double dietCostPerDay = administrator.getDietCostPerDay();
+        DoubleProperty distanceCostProperty = administrator.distanceCostProperty();
+        DoubleProperty dietCostPerDayProperty = administrator.dietCostPerDayProperty();
+
+        double distanceCost = distanceCostProperty.get();
+        double dietCostPerDay = dietCostPerDayProperty.get();
         double mileage = Double.parseDouble(mileageField.getText());
         int dailyAllowance = Integer.parseInt(dailyAllowanceField.getText());
 
