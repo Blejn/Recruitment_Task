@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f45eb579-7c9d-43b2-a80e-4fd77c18f068" name="Changes" comment="configuration rest files">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Administrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/BusinessTrip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Receipt.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ReimbursementCalculator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/UserView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
+    <list default="true" id="f45eb579-7c9d-43b2-a80e-4fd77c18f068" name="Changes" comment="main file and UserView to create user section ui app">
+      <change afterPath="$PROJECT_DIR$/src/main/java/AdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/Recruitment_Task-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/Recruitment_Task-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +24,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -54,7 +56,15 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Recruitment_Task" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\swagm\Downloads\openjfx-17.0.8_windows-x64_bin-sdk\javafx-sdk-17.0.8\lib&quot; --add-modules=javafx.controls,javafx.web" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main" />
       <module name="Recruitment_Task" />
@@ -63,9 +73,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.main" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -106,7 +121,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692710025491</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add classes">
+      <created>1692710132405</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692710132405</updated>
+    </task>
+    <task id="LOCAL-00006" summary="main file and UserView to create user section ui app">
+      <created>1692710206041</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692710206041</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -126,7 +155,19 @@
     <MESSAGE value="configuration #2" />
     <MESSAGE value="configuration #3" />
     <MESSAGE value="configuration rest files" />
-    <option name="LAST_COMMIT_MESSAGE" value="configuration rest files" />
+    <MESSAGE value="add classes" />
+    <MESSAGE value="main file and UserView to create user section ui app" />
+    <option name="LAST_COMMIT_MESSAGE" value="main file and UserView to create user section ui app" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
