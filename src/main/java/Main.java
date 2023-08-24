@@ -3,12 +3,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-public class main extends Application {
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main extends Application {
     private Stage primaryStage;
     private UserView userView;
     private AdminView adminView;
     private VBox mainMenu;
     private Administrator administrator;
+    private  User user;
+   public List<ReimbursementApplication> applicationsList = new ArrayList<>();
 
     public static void main(String[] args) {
         launch(args);
@@ -17,12 +23,15 @@ public class main extends Application {
     @Override
     public void start(Stage primaryStage) {
         administrator = new Administrator("admin", 15, 0.3);
+        user = new User("","");
+
+
 
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Expense Reimbursement Application");
 
-        userView = new UserView(this, administrator);
-        adminView = new AdminView(this, administrator);
+        userView = new UserView(this, administrator,user,applicationsList);
+        adminView = new AdminView(this, administrator,applicationsList);
         mainMenu = createMainMenu();
 
         Scene scene = new Scene(mainMenu, 300, 200);
@@ -43,12 +52,12 @@ public class main extends Application {
     }
 
     private void openUserView() {
-        VBox userRoot = new UserView(this, administrator).getRoot();
+        VBox userRoot = new UserView(this, administrator,user,applicationsList).getRoot();
         openView(userRoot);
     }
 
     private void openAdminView() {
-        VBox adminRoot = new AdminView(this, administrator).getRoot();
+        VBox adminRoot = new AdminView(this, administrator,applicationsList).getRoot();
         openView(adminRoot);
     }
 
