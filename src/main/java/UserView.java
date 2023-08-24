@@ -1,4 +1,5 @@
 
+import javafx.beans.property.DoubleProperty;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
@@ -16,22 +17,35 @@ public class UserView {
     private DatePicker datePickerStart;
     private DatePicker datePickerEnd;
     private TextField daysField;
+    private  TextField usernameField;
     private List<Receipt> receiptsList;
     private Label receiptInfoLabel;
     private VBox receiptBox;
     private VBox daysDietBox;
     private Administrator administrator;
+    private List<ReimbursementApplication> applicationsList;
+
+    private User user;
+
+    private double totalCost;
 
 
-    public UserView(main main) {
+
+
+    public UserView(Main main, Administrator administrator,User user, List<ReimbursementApplication> applicationsList) {
         receiptsList = new ArrayList<>();
         receiptBox = new VBox(10);
         daysDietBox = new VBox();
         receiptsContainer = new HBox();
-        administrator = new Administrator("admin",15,0.3);
+        this.administrator = administrator;
+        this.applicationsList = applicationsList;
+
 
         addReceipt();
         Label titleLabel = new Label("Create Reimbursement Claim");
+
+       Label usernameLabel = new Label("username");
+       usernameField = new TextField();
 
 
         Label dateStartLabel = new Label("Start Trip Date:");
@@ -65,7 +79,9 @@ public class UserView {
                 dailyAllowanceField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
-        daysDietBox.getChildren().addAll(new Label("Daily Allowance Days:"), dailyAllowanceField);
+        HBox dailyAllowanceBox = new HBox(10);
+        dailyAllowanceBox.getChildren().addAll(new Label("Daily Allowance Days:"), dailyAllowanceField);
+        daysDietBox.getChildren().add(dailyAllowanceBox);
 
 
         disableDaysCheckbox.setOnAction(event->{
@@ -110,7 +126,7 @@ public class UserView {
         Label totalAmountResultLabel = new Label();
 
         Button applyButton = new Button("Apply");
-        applyButton.setOnAction(event -> System.out.println("Date trip:" + datePickerStart.getValue()));
+        applyButton.setOnAction(event -> {apply();});
 
         Button calculateButton = new Button("Calculate Reimbursement");
         calculateButton.setOnAction(event -> {
@@ -120,23 +136,24 @@ public class UserView {
         });
 
         Button backButton = new Button("Back to Main");
-        backButton.setOnAction(event -> main.backToMainScene());
+        backButton.setOnAction(event -> main.backToMainScene(administrator));
 
         GridPane formLayout = new GridPane();
-        formLayout.setHgap(11);
-        formLayout.setVgap(11);
+        formLayout.setHgap(10);
+        formLayout.setVgap(10);
         formLayout.setPadding(new Insets(10));
-        formLayout.addRow(0, dateStartLabel, datePickerStart,dateEndLabel,datePickerEnd);
-        formLayout.addRow(1,  receiptBox);
-        formLayout.addRow(2, receiptsContainer);
-        formLayout.addRow(3, daysLabel, daysField);
-        formLayout.addRow(4, disableDaysLabel, disableDaysCheckbox);
-        formLayout.addRow(5, daysDietBox);
-        formLayout.addRow(6, mileageLabel, mileageField);
-        formLayout.addRow(7, totalAmountLabel, totalAmountResultLabel);
-        formLayout.addRow(8, calculateButton);
-        formLayout.addRow(9, applyButton);
-        formLayout.addRow(10, backButton);
+        formLayout.addRow(0, usernameLabel, usernameField);
+        formLayout.addRow(1, dateStartLabel, datePickerStart,dateEndLabel,datePickerEnd);
+        formLayout.addRow(2,  receiptBox);
+        formLayout.addRow(3, receiptsContainer);
+        formLayout.addRow(4, daysLabel, daysField);
+        formLayout.addRow(5, disableDaysLabel, disableDaysCheckbox);
+        formLayout.addRow(6, daysDietBox);
+        formLayout.addRow(7, mileageLabel, mileageField);
+        formLayout.addRow(8, totalAmountLabel, totalAmountResultLabel);
+        formLayout.addRow(9, calculateButton);
+        formLayout.addRow(10, applyButton);
+        formLayout.addRow(11, backButton);
 
         root = new VBox(20);
         root.getChildren().addAll(titleLabel, formLayout);
@@ -175,23 +192,29 @@ public class UserView {
             System.out.println(receipt);
             totalAmount += receipt.getAmount();
         }
-
-        double distanceCost = administrator.getDistanceCost();
-        double dietCostPerDay = administrator.getDietCostPerDay();
+        DoubleProperty distanceCostProperty = administrator.distanceCostProperty();
+        DoubleProperty dietCostPerDayProperty = administrator.dietCostPerDayProperty();
+        double distanceCost = distanceCostProperty.get();
+        double dietCostPerDay = dietCostPerDayProperty.get();
         double mileage = Double.parseDouble(mileageField.getText());
         int dailyAllowance = Integer.parseInt(dailyAllowanceField.getText());
-
-        System.out.println("distance cost"+distanceCost);
-        System.out.println("dietCostPerDay"+dietCostPerDay);
-
-        System.out.println("mileage"+mileage);
-
-        System.out.println("dailyAllowane"+dailyAllowance);
-
-
         totalAmount += (mileage * distanceCost) + (dailyAllowance * dietCostPerDay);
-
+        totalCost = totalAmount;
         return totalAmount;
+    }
+
+    private void apply(){
+        String username = usernameField.getText();
+        List<Receipt> receipts = new ArrayList<>(receiptsList);
+        double total = totalCost;
+        System.out.println(username);
+        for(Receipt receipt:receipts){
+            System.out.println(receipt.getName());
+            System.out.println(receipt.getAmount());
+        }
+        System.out.println(total);
+        ReimbursementApplication application = new ReimbursementApplication(username, receipts, total);
+        applicationsList.add(application);
     }
 
     private void updateDaysField(){
