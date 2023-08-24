@@ -9,8 +9,6 @@ import java.util.List;
 
 public class Main extends Application {
     private Stage primaryStage;
-    private UserView userView;
-    private AdminView adminView;
     private VBox mainMenu;
     private Administrator administrator;
     private  User user;
@@ -30,8 +28,7 @@ public class Main extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Expense Reimbursement Application");
 
-        userView = new UserView(this, administrator,user,applicationsList);
-        adminView = new AdminView(this, administrator,applicationsList);
+
         mainMenu = createMainMenu();
 
         Scene scene = new Scene(mainMenu, 300, 200);

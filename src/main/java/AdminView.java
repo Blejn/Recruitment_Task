@@ -7,25 +7,33 @@ import java.util.List;
 
 public class AdminView {
     private VBox root;
-    private Administrator administrator;
-    private List<ReimbursementApplication> applicationsList;
 
     public AdminView(Main main,Administrator administrator, List<ReimbursementApplication> applicationsList) {
 
-        // Przykład wyświetlenia wniosków w kontrolce TextArea (lub innej, pasującej do twoich potrzeb)
         TextArea applicationsTextArea = new TextArea();
         applicationsTextArea.setEditable(false);
         applicationsTextArea.setPrefHeight(300);
 
         StringBuilder applicationsText = new StringBuilder();
         for (ReimbursementApplication application : applicationsList) {
-            applicationsText.append(application.toString()).append("\n"); // Dostosuj wyświetlanie
+            applicationsText.append("-------------------------------------------------").append("\n");
+            applicationsText.append("Wniosek użytkownika:").append("\n");
+            applicationsText.append(application.getUsername()).append("\n");
+            applicationsText.append("Koszta wniosku:").append("\n");
+            applicationsText.append(application.getTotalAmount()).append("\n");
+            applicationsText.append("Lista paragonów:").append("\n");
+            for(Receipt receipt : application.getReceipts()){
+                applicationsText.append(receipt.toString()).append("\n");
+            }
+            applicationsText.append("-------------------------------------------------").append("\n");
+
+
         }
+
         applicationsTextArea.setText(applicationsText.toString());
 
-        // Dodaj applicationsTextArea do interfejsu użytkownika
 
-        this.administrator = administrator;
+
         Label titleLabel = new Label("Administrator View");
 
         Label dailyAllowanceLabel = new Label("Daily Allowance Rate ($):");
